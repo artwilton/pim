@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Container.destroy_all
+Type.destroy_all
+User.destroy_all
+
+types = Type.create([{name: 'Building'},
+{name: 'Room'},
+{name: 'Closet'},
+{name: 'Shelving'},
+{name: 'Bin'}])
+
+10.times do
+    name = Faker::TvShows::Buffy.unique.character
+    user = User.create!(
+      name: name,
+      email: Faker::Internet.email(name: name),
+      password:'1234'
+    )
+end

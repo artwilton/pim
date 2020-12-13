@@ -30,11 +30,11 @@ office = arthur.containers.create(name: "Office", percent_used: 80, type_id: Typ
 closet = arthur.containers.create(name: "Closet", percent_used: 95, type_id: Type.find_by(name: "Closet").id, parent_id: office.id)
 shelving = arthur.containers.create(name: "Shelving Unit 1", percent_used: 75, type_id: Type.find_by(name: "Shelving").id, parent_id: closet.id)
 containers = arthur.containers.create([
-    {name: "Bin 1", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id},
-    {name: "Bin 2", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id},
-    {name: "Bin 3", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id},
-    {name: "Bin 4", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id},
-    {name: "Bin 5", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id},
+    {name: "Bin 1", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id, barcode: Faker::Barcode.upc_a},
+    {name: "Bin 2", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id, barcode: Faker::Barcode.upc_a},
+    {name: "Bin 3", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id, barcode: Faker::Barcode.upc_a},
+    {name: "Bin 4", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id, barcode: Faker::Barcode.upc_a},
+    {name: "Bin 5", percent_used: 50, type_id: Type.find_by(name: "Bin").id, parent_id: shelving.id, barcode: Faker::Barcode.upc_a},
 ])
 
 categories = Category.create([

@@ -1,7 +1,7 @@
 class UserItemsSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
 
-    attributes :id, :name, :email, :password, :items, :categories, :types
+    attributes :id, :name, :email, :password, :items, :containers, :categories, :types
 
     def items
         self.object.items.map do |item|
@@ -13,6 +13,15 @@ class UserItemsSerializer < ActiveModel::Serializer
                 barcode: item.barcode,
                 container: {id: item.container.id, name: item.container.name},
                 category: {id: item.category.id, name: item.category.name}
+            }
+        end
+    end
+
+    def containers
+        self.object.containers.map do |container|
+            {
+                id: container.id,
+                name: container.name
             }
         end
     end

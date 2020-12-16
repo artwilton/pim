@@ -29,6 +29,11 @@ class Api::V1::UsersController < ApplicationController
         render json: @user, serializer: UserItemsSerializer
     end
 
+    def new_user_item
+        item = @user.items.create(user_item_params)
+        render json: item
+    end
+
     private
 
     def find_user
@@ -37,5 +42,9 @@ class Api::V1::UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:name, :email, :password, :profile_photo)
+    end
+
+    def user_item_params
+        params.require(:item).permit(:name, :description, :notes, :barcode, :container_id, :category_id)
     end
 end

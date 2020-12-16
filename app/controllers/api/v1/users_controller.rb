@@ -25,6 +25,10 @@ class Api::V1::UsersController < ApplicationController
         render json: @user
     end
 
+    def user_items
+        render json: @user, serializer: UserItemsSerializer
+    end
+
     private
 
     def find_user

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :containers
       resources :categories
       resources :types
+      get 'users/:id/items', :to => 'users#user_items'
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

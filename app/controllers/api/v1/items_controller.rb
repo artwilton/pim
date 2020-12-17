@@ -23,8 +23,8 @@ class Api::V1::ItemsController < ApplicationController
     end
 
     def update
-        @item.update(item_params)
-        render json: @item
+        item = @item.update(item_params)
+        render json: item
     end
 
     def new_user_item

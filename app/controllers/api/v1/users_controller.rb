@@ -29,11 +29,6 @@ class Api::V1::UsersController < ApplicationController
         render json: @user, serializer: UserItemsSerializer
     end
 
-    def new_user_item
-        item = @user.items.create(user_item_params)
-        render json: item
-    end
-
     private
 
     def find_user

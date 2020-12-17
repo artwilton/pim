@@ -1,6 +1,8 @@
 class Api::V1::ItemsController < ApplicationController
     
     before_action :find_item, except: [:index, :create]
+    before_action :find_user, only: :new_user_item
+
 
     def index
         @items = Item.all
@@ -25,7 +27,16 @@ class Api::V1::ItemsController < ApplicationController
         render json: @item
     end
 
+    def new_user_item
+        item = @user.items.create(item_params)
+        render json: item
+    end
+
     private
+
+    def find_user
+        @user = User.find(params[:id])
+    end
 
     def find_item
         @item = Item.find(params[:id])

@@ -4,8 +4,8 @@ class Api::V1::UserItemsController < ApplicationController
         user_item = UserItem.find_by(user_id: params[:user_id], item_id: params[:item_id])
         user_item.destroy
 
-        user_items = User.find(params[:user_id]).items
-        render json: user_items
+        user = User.find(params[:user_id])
+        render json: user, serializer: UserItemsSerializer
     end
     
     private

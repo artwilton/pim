@@ -1,7 +1,7 @@
 class Api::V1::ItemsController < ApplicationController
     
     before_action :find_item, except: [:index, :create]
-    before_action :find_user, only: :new_user_item
+    before_action :find_user, only: [:new_user_item]
 
 
     def index
@@ -23,13 +23,14 @@ class Api::V1::ItemsController < ApplicationController
     end
 
     def update
-        item = @item.update(item_params)
-        render json: item
+        @item.update(item_params)
+        user = User.find(params[:user_id])
+        render json: user, serializer: UserItemsSerializer
     end
 
     def new_user_item
         item = @user.items.create(item_params)
-        render json: item
+        render json: item, serializer: CreateItemSerializer
     end
 
     private

@@ -1,7 +1,11 @@
 class UserItemsSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
 
-    attributes :id, :name, :email, :password, :items, :containers, :categories, :types
+    attributes :id, :name, :email, :password, :items, :containers, :categories, :types, :user_profile_photo
+
+    def user_profile_photo
+        rails_blob_path(object.profile_photo, only_path: true) if object.profile_photo.attached?
+    end
 
     def items
         self.object.items.map do |item|

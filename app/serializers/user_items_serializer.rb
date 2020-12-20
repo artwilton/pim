@@ -29,7 +29,8 @@ class UserItemsSerializer < ActiveModel::Serializer
         self.object.containers.map do |container|
             {
                 id: container.id,
-                name: container.name
+                name: container.name,
+                barcode: container.barcode
             }
         end
     end

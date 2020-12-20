@@ -18,7 +18,7 @@ class UserItemsSerializer < ActiveModel::Serializer
                 description: item.description,
                 notes: item.notes,
                 barcode: item.barcode,
-                container: {id: item.container.id, name: item.container.name},
+                container: {id: item.container.id, name: item.container.name, barcode: item.container.barcode},
                 category: {id: item.category.id, name: item.category.name},
                 photos: item.photos.attached? ? item.photos.map { |photo| rails_blob_path(photo, only_path: true) }  : []
             }

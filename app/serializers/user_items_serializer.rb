@@ -1,18 +1,26 @@
 class UserItemsSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
 
-    attributes :id, :name, :email, :password, :items, :containers, :categories, :types
+    attributes :id, :name, :email, :password, :items, :containers, :categories, :types, :user_profile_photo
+
+    def user_profile_photo
+        rails_blob_path(object.profile_photo, only_path: true) if object.profile_photo.attached?
+    end
 
     def items
         self.object.items.map do |item|
+
             {
                 id: item.id,
                 name: item.name,
                 description: item.description,
                 notes: item.notes,
                 barcode: item.barcode,
-                container: {id: item.container.id, name: item.container.name},
-                category: {id: item.category.id, name: item.category.name}
+                container: {id: item.container.id, name: item.container.name, barcode: item.container.barcode},
+                category: {id: item.category.id, name: item.category.name},
+                photo: item.photo.attached? ? rails_blob_path(item.photo, only_path: true)  : null
+                # use for multiple photos
+                # photos: item.photos.attached? ? item.photos.map { |photo| rails_blob_path(photo, only_path: true) }  : []
             }
         end
     end
@@ -21,7 +29,8 @@ class UserItemsSerializer < ActiveModel::Serializer
         self.object.containers.map do |container|
             {
                 id: container.id,
-                name: container.name
+                name: container.name,
+                barcode: container.barcode
             }
         end
     end

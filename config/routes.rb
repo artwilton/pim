@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       resources :categories
       resources :types
       get 'users/:id/items', :to => 'users#user_items'
-      post 'users/:id/items/new', :to => 'items#new_user_item'
+      post 'users/:user_id/items/new', :to => 'items#new_user_item'
       patch 'items/:id/:user_id', :to => 'items#update'
+      put 'items/:id/:user_id', :to => 'items#update'
       delete 'users/:user_id/user_items/:item_id', :to => 'user_items#destroy'
     end
   end

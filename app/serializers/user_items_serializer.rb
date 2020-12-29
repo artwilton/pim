@@ -18,7 +18,7 @@ class UserItemsSerializer < ActiveModel::Serializer
                 barcode: item.barcode,
                 container: {id: item.container.id, name: item.container.name, barcode: item.container.barcode},
                 category: {id: item.category.id, name: item.category.name},
-                photo: item.photo.attached? ? rails_blob_path(item.photo, only_path: true)  : null
+                photo: item.photo.attached? ? {uri: rails_blob_path(item.photo, only_path: true)}  : null
                 # use for multiple photos
                 # photos: item.photos.attached? ? item.photos.map { |photo| rails_blob_path(photo, only_path: true) }  : []
             }

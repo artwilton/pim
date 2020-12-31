@@ -12,7 +12,7 @@ class CreateItemSerializer < ActiveModel::Serializer
     end
 
     def photo
-        {uri: self.object.photo.attached? ? rails_blob_path(self.object.photo, only_path: true) : null}
+        {uri: self.object.photo.attached? ? rails_blob_path(self.object.photo, only_path: true) : nil}
     end
 
 end

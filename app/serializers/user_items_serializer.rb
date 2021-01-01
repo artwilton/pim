@@ -30,7 +30,8 @@ class UserItemsSerializer < ActiveModel::Serializer
             {
                 id: container.id,
                 name: container.name,
-                barcode: container.barcode
+                barcode: container.barcode,
+                photo: container.photo.attached? ? {uri: rails_blob_path(container.photo, only_path: true)}  : {uri: nil}
             }
         end
     end
@@ -39,14 +40,18 @@ class UserItemsSerializer < ActiveModel::Serializer
         default_categories = Category.where(default: true).map do |category|
             {
                 id: category.id,
-                name: category.name
+                name: category.name,
+                photo: category.photo.attached? ? {uri: rails_blob_path(category.photo, only_path: true)}  : {uri: nil}
+
             }
         end
 
         user_categories = self.object.categories.map do |category|
             {
                 id: category.id,
-                name: category.name
+                name: category.name,
+                photo: category.photo.attached? ? {uri: rails_blob_path(category.photo, only_path: true)}  : {uri: nil}
+
             }
         end
         default_categories + user_categories
@@ -56,14 +61,17 @@ class UserItemsSerializer < ActiveModel::Serializer
         default_types = Type.where(default: true).map do |type|
             {
                 id: type.id,
-                name: type.name
+                name: type.name,
+                photo: type.photo.attached? ? {uri: rails_blob_path(type.photo, only_path: true)}  : {uri: nil}
             }
         end
 
         user_types = self.object.types.map do |type|
             {
                 id: type.id,
-                name: type.name
+                name: type.name,
+                photo: type.photo.attached? ? {uri: rails_blob_path(type.photo, only_path: true)}  : {uri: nil}
+
             }
         end
         default_types + user_types

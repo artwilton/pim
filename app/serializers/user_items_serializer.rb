@@ -42,6 +42,7 @@ class UserItemsSerializer < ActiveModel::Serializer
             {
                 id: category.id,
                 name: category.name,
+                description: category.description,
                 photo: category.photo.attached? ? {uri: rails_blob_path(category.photo, only_path: true)}  : {uri: nil}
 
             }
@@ -51,6 +52,7 @@ class UserItemsSerializer < ActiveModel::Serializer
             {
                 id: category.id,
                 name: category.name,
+                description: category.description,
                 photo: category.photo.attached? ? {uri: rails_blob_path(category.photo, only_path: true)}  : {uri: nil}
 
             }

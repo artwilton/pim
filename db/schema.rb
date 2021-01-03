@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2020_12_13_064732) do
 
   create_table "containers", force: :cascade do |t|
     t.string "name"
+    t.text "description"
+    t.text "notes"
     t.integer "percent_used"
     t.string "barcode"
     t.bigint "type_id", null: false

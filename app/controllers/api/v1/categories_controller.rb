@@ -1,6 +1,7 @@
 class Api::V1::CategoriesController < ApplicationController
     
-    before_action :find_category, except: [:index, :create]
+    before_action :find_category, except: [:index, :create, :new_user_category]
+    before_action :find_user, only: :new_user_category
 
     def index
         @categories = Category.all
@@ -22,10 +23,19 @@ class Api::V1::CategoriesController < ApplicationController
 
     def update
         @category.update(category_params)
-        render json: @category
+        render json: @category, serializer: CategorySerializer
+    end
+
+    def new_user_category
+        category = @user.categories.create(category_params)
+        render json: category, serializer: CategorySerializer
     end
 
     private
+
+    def find_user
+        @user = User.find(params[:user_id])
+    end
 
     def find_category
         @category = Category.find(params[:id])

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       delete 'users/:user_id/user_items/:item_id', :to => 'user_items#destroy'
 
       resources :containers
+      post 'users/:user_id/containers/new', :to => 'containers#new_user_container'
+      delete 'users/:user_id/user_containers/:container_id', :to => 'user_containers#destroy'
 
       resources :categories
       post 'users/:user_id/categories/new', :to => 'categories#new_user_category'

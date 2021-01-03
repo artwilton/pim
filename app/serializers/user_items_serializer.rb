@@ -32,6 +32,7 @@ class UserItemsSerializer < ActiveModel::Serializer
                 name: container.name,
                 description: container.description,
                 notes: container.notes,
+                percent_used: container.percent_used,
                 barcode: container.barcode,
                 type: {id: container.type.id, name: container.type.name},
                 photo: container.photo.attached? ? {uri: rails_blob_path(container.photo, only_path: true)}  : {uri: nil}

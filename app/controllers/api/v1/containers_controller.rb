@@ -1,7 +1,7 @@
 class Api::V1::ContainersController < ApplicationController
     
-    before_action :find_container, except: [:index, :create, :new_user_container]
     before_action :find_user, only: :new_user_container
+    before_action :find_container, except: [:index, :create, :new_user_container]
 
     def index
         @containers = Container.all
@@ -42,7 +42,7 @@ class Api::V1::ContainersController < ApplicationController
     end
 
     def container_params
-        params.permit(:name, :description, :notes, :percent_used, :barcode, :type_id, :parent_id, :photo)
+        params.require(:container).permit(:name, :description, :notes, :percent_used, :barcode, :type_id, :parent_id, :photo)
     end
 
 end

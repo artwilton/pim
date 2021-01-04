@@ -1,10 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "down"
+require 'net/http'
+require 'json'
 
 types = Type.create([
     {name: 'Building', default: true},
@@ -46,5 +42,12 @@ categories = Category.create([
 ])
 
 50.times do
-    arthur.items.create(name: Faker::Commerce.unique.product_name, container_id: containers.sample.id, category_id: categories.sample.id)
+    url = 'https://loremflickr.com/json/300/300/household,items/all'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    data = JSON.parse(response)
+
+    item = arthur.items.create(name: Faker::Commerce.unique.product_name, container_id: containers.sample.id, category_id: categories.sample.id)
+    image = Down.download(data['file'])
+    item.photo.attach(io: image, filename: "image.jpg")
 end

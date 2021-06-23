@@ -1,24 +1,29 @@
-# README
+# PIM - The Person Inventory Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**PIM** is a React Native application developed as my final project for Flatiron School. It allows users to create an inventory of items, keep track of where they put those items, and add metadata to the items and their containers.
 
-Things you may want to cover:
+Here's a demo of PIM from the Flatiron School Science Fair:
 
-* Ruby version
+https://user-images.githubusercontent.com/69938486/123050076-4805de80-d3ce-11eb-8096-1c391b3d1b9d.mp4
 
-* System dependencies
+## Tech Stack
 
-* Configuration
+### Frontend
+- React Native (test mainly using Android Studio on API level 29)
+- React Navigation - https://reactnavigation.org/
 
-* Database creation
+#### Image and Camera Tools
+- React Native Image Picker - https://github.com/react-native-image-picker/react-native-image-picker
+- React Native Camera - https://github.com/react-native-camera/react-native-camera
 
-* Database initialization
+#### Misc. UI Tools
+- React Native Elements - https://reactnativeelements.com/
+- react-native-picker - https://github.com/react-native-picker/picker
+- react-native-snap-carousel - https://github.com/meliorence/react-native-snap-carousel
 
-* How to run the test suite
+### Backend
+- Rails API with PostgreSQL Database - 
+- Active Storage for uploading and storing photos
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+---
+This is the backend repo, link to the backend repo is here - https://github.com/artwilton/pim-frontend

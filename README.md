@@ -26,4 +26,4 @@ https://user-images.githubusercontent.com/69938486/123050076-4805de80-d3ce-11eb-
 - Active Storage for uploading and storing photos
 
 ---
-This is the backend repo, link to the backend repo is here - https://github.com/artwilton/pim-frontend
+This is the backend repo, link to the frontend repo is here - https://github.com/artwilton/pim-frontend
